@@ -2,7 +2,7 @@ export CC=`basename $CC`
 export CXX=`basename $CXX`
 export LIBRARY_PATH=$PREFIX/lib
 
-export LDFLAGS="$LDFLAGS -L/usr/lib/x86_64-linux-gnu"
+#export LDFLAGS="$LDFLAGS -L/usr/lib/x86_64-linux-gnu"
 
 pushd ucx && \
     ./contrib/configure-release --prefix=$PREFIX \

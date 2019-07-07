@@ -21,11 +21,11 @@ reading...
 ```bash
 git clone https://github.com/teju85/ompi-recipe
 cd ompi-recipe
-docker build -t conda:dev . && docker run --rm -it conda:dev /bin/bash
+docker build -t conda:dev . && docker run --rm -it --runtime nvidia conda:dev /bin/bash
 inside-container# anaconda login
 inside-container# conda build ompi-cuda
 inside-container# anaconda upload /path/to/ompi-cuda/package.tar.gz
-inside-container# conda build -c anaconda ompi-cuda-ucx
+inside-container# conda build ompi-cuda-ucx
 inside-container# anaconda upload /path/to/ompi-cuda-ucx/package.tar.gz
 ```
 
