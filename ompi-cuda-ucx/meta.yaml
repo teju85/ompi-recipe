@@ -1,13 +1,16 @@
-{% set name = "ompi-cuda" %}
+{% set name = "ompi-cuda-ucx" %}
 {% set ompiVersion = "4.0.1" %}
 {% set ompiVersionShort = "4.0" %}
 {% set cudaVersion = '.'.join(environ.get('CUDA_VERSION', '9.2').split('.')[:2]) %}
+{% set ucxVersion = "1.5.1" %}
 
 package:
   name: {{ name }}
   version: {{ ompiVersion }}
 
 source:
+  - url: https://github.com/openucx/ucx/releases/download/v{{ ucxVersion }}/ucx-{{ ucxVersion }}.tar.gz
+    folder: ucx
   - url: https://download.open-mpi.org/release/open-mpi/v{{ ompiVersionShort }}/openmpi-{{ ompiVersion }}.tar.gz
     folder: ompi
 
@@ -18,10 +21,14 @@ build:
 
 requirements:
   build:
+    - autoconf
+    - automake
     - ca-certificates
     - cmake
     - git
+    - libtool
     - make
+    - pkg-config
     - zlib
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
